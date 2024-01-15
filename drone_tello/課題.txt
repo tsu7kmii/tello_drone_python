@@ -1,0 +1,80 @@
+プログラムの資料等です．
+プログラムの作成
+（1）最初のプログラム
+tello3.pyを動作させましょう．コマンドを手入力することでドローンを操作しましょう．
+（2）Single_telloプログラム
+command.txtファイルを読み込んで，ドローンへのコマンドを手入力からファイル入力へ変更しましょう．
+注意１：Spyderの設定で起動時のオプションに引数として”command.txt”をセットすることを忘れないように．
+注意２：内容を理解してください．だんだん複雑になっていきます．
+
+
+（3）ビデオ映像取得ドローン
+
+ビデオ映像取得とGUIのプログラムです．内容を理解して以下の変更を加えてください．
+①GUIに「前進」「後進」「右回転」「左回転」「フリップ」等のボタンを追加して，それぞれの動作をするようにプログラムを変更してください．
+②映像の保存が一つのファイルだけです．時系列で10個のファイルが蓄積できるように変更してください．←ｲﾏｺｺ苦戦中
+
+
+11/8
+
+→ https://a3rt.recruit.co.jp/
+（４）リンゴを判断するドローン
+ドローンを飛ばせて，映像を取得して，リンゴであったらその位置に着陸するプログラムを作ってみましょう．
+基本的に，（3）のプログラムの続きを使います．
+以下の手順で，今回はオリジナルプログラム作成にチャレンジしてみます．
+
+①リンゴの判断プログラムの作成　image_kaiseki.py
+　https://a3rt.recruit-tech.co.jp/product/imageSearchAPI/
+ リクルートのa3rtのWebAPIを使います．
+　まず，サイトをよく読んで，全体像を理解してください．
+　そのうえで，search By Image API を使って，指定された画像に何が移っているかを判断します．
+　image_kaiseki.pyを新規で作ることにチャレンジしましょう．
+
+　ポイント１：残念ながら適切なサンプルプログラムが見つからなかったです．新しいAPIだから？
+　ポイント２：PythonのMainプログラムを作りましょう．
+　ポイント３：画像解析部分はdefを使って，メソッド化してください．あとで，このメソッドを使います．
+　ポイント４：現在のところのAPIはURLで指定できる画像を解析できるようになっています．
+　　　　　　　したがって，URLで表現できるサイトへ画像ファイルをコピーする必要があります．
+　　　　　　　花川ゼミで使っているsakuraレンタルサーバへのコピーして使います．
+　　　　　　　その部分のメソッドは以下を使ってください．Mainメソッドで以下をコールしてください．
+＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃
+def send_image():
+    psurl = 'https://tondabayashi.sakura.ne.jp/drone//img_stock1.php'
+    try:
+        img_data = open('Img_01.jpg','rb')
+        requests.post(psurl,img_data)
+        #flag = scan_sub()
+        #return flag
+        return 
+    except Exception:
+        print("エラー")
+＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃
+
+注意！　4人が同じサイトと同じファイル名を使うと上書きしてしまうので，
+　　　　A君は　'https://tondabayashi.sakura.ne.jp/drone//img_stock1.php
+　　　　B君は　'https://tondabayashi.sakura.ne.jp/drone//img_stock2.php
+
+に変更してください．
+そうすると，search By Image APIに指定するURLは，
+ A君は　"https://tondabayashi.sakura.ne.jp/drone/img1.jpg"
+ B君は　 "https://tondabayashi.sakura.ne.jp/drone/img2.jpg"
+となります．
+
+
+とりあえず，画像をサイトにアップして，その画像に何が移っているかを判断するプログラム　image_kaiseki.pyを作ります．
+
+
+参考；とりあえず，新規で作る練習です．
+　　　ギブアップでしたら，こちらで用意したサンプルを渡します．とりあえず，頑張ってみてください．
+
+②　ドローンのプログラムに①でつくった映像を判断するメソッドをコールするように変更してください．
+先週作成したプログラム tello_Video_hanakawa.py
+
+ヒント１：import　の追加
+ヒント２：Move_save()メソッドの画像保存後に以下の処理追加
+　　　　・　上記のsend_image()メソッドと内容が同じ処理追加
+　　　　・　ただし， #flag = scan_sub()　        #return flag　のコメントを削除し，有効にする．．
+　　　　・　scan_sub()メソッドの新規追加
+　　　　　　このメソッドは，Img_kaiseki_noriko.image_apiメソッドを指定の画像で呼び出す．
+　　　　　　そして，返答が「リンゴ」であったら着陸命令を出す．
+

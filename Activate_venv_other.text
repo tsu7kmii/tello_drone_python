@@ -1,0 +1,26 @@
+仮想環境を起動：venv\Scripts\Activate.ps1
+無効か：deactivate
+これでVSCode_python_flask内でvenv仮想環境が使用可能
+仮想環境利用中：(venv)C:
+
+venvファイルは仮想環境を使用するのに必要なもの、気にしなくていいと思う
+参考リンク：https://zukkie.link/pythonvenv%e3%81%a7%e4%bb%ae%e6%83%b3%e7%92%b0%e5%a2%83%e6%a7%8b%e7%af%89/　
+・whereがうまくいかないのが謎、拡張機能のpythonが動いてるから？
+起動時エラーが出た場合：https://www.python.jp/install/windows/venv.html
+
+編集したファイルの保存：ctrl + S
+作成したファイルの実行：▶ or Ctrl + F5
+PSがターミナルに表示されないとき：ctrl + C
+ターミナルで前回と同じことを書き出す：↑ key
+画面右下または中央の＋でワークスペースのターミナル変更
+
+リベンジ：https://youtu.be/EQIAzH0HvzQ
+
+ターミナル
+入る：cd (ファイル名)
+戻る：cd ..
+
+ちゃんとcdでファイル移動した後に
+flask run で起動　app.pyじゃないと動かなそう
+ページが更新されないときは仮想環境の出入りで治るかも
+

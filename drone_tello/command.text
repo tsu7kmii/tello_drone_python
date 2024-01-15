@@ -1,0 +1,17 @@
+コマンド	説明	                            レスポンス
+command	    commandモードに入る	                OK / FALSE
+takeoff	    自動離陸	                        OK / FALSE
+land	    自動着陸	                        OK / FALSE
+up xx	    上昇 xx=(20-500cm)	                OK / FALSE
+down xx	    下降 xx=(20-500cm)	                OK / FALSE
+left xx	    左方に飛行 xx=(20-500cm)	        OK / FALSE
+right xx	右方に飛行 xx=(20-500cm)	        OK / FALSE
+forward xx	前方に飛行 xx=(20-500cm)	        OK / FALSE
+back xx	    後方に飛行 xx=(20-500cm)	        OK / FALSE
+cw xx	    時計回りにxx°回転 xx=(1-3600°)	    OK / FALSE
+ccw xx	    反時計回りにxx°回転 xx=(1-3600°)	OK / FALSE
+flip x	    フリップ x={l,r,f,b,bl,rb,fl,fr}	OK / FALSE
+speed xx	速度をxxに設定 xx=(1-100cm/s)	    OK / FALSE
+speed?	    現在の設定速度を取得	            1-100cm/s
+battery?	現在の充電量を取得	                0-100%
+time?	    現在の飛行時間を取得	            xx

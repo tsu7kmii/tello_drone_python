@@ -1,0 +1,17 @@
+(in tello_videohanakawa.spple.py)
+1.def movie_save():
+    ~ cv2.imwrite('Img_01.jpg',frame)
+写真を撮り保存する。
+2.def send_image()
+桜鯖に撮った写真を投げる。
+scan_subを動かす
+3.def scan_sub():
+    ~ scan_data = Img_kaiseki_noriko.image_api('Img_01.jpg',2)
+Img_kaiseki_noriko.pyを起動し、img_apiで画像解析をする
+scan_dataに解析内容を返す。
+    ~if scan_data == 'リンゴ' or scan_data == 'りんご':
+    ~    sock.sendto(b'land',tello_address)
+scan_dataに返された内容がリンゴorりんごであれば着陸指示を出す。
+
+to-do 
+send_img/scan_subの送るimgファイルの名前を写真を撮った時のファイルと同じように変わるようにする
