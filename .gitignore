@@ -1,3 +1,7 @@
 .env
-img/*
+img/**
+!/img/**/
+!/img/**/.gitkeep
+
 drone_tello/__pycache__/*
+
