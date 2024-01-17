@@ -20,6 +20,7 @@ i = 0 #画像保存カウント用
 j = 0
 start_bu = False
 photo_t = True
+is_running = True
 # Create a UDP socket
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
@@ -28,7 +29,8 @@ tello_address = ('192.168.10.1', 8889)
 sock.bind(locaddr)
 
 def recv():
-    while True:
+    global is_running
+    while is_running:
         try:
             data, server = sock.recvfrom(1518)
             tello_reply = data.decode(encoding="utf-8")
@@ -42,6 +44,7 @@ def movie_save():
     global j
     global start_bu
     global photo_t
+    global is_running
     sock.sendto(b'command', tello_address)
     print('command ok')
     time.sleep(0.5)
@@ -50,7 +53,7 @@ def movie_save():
     cap = cv2.VideoCapture("udp://%s:%s?overrun_nonfatal=1&fifo_size=50000000" % ('192.168.11.7', '11111'))
     # cap = cv2.VideoCapture("udp:0.0.0.0:11111")
     print('start cap , button ok')
-    while True:
+    while is_running:
         try:
             ret,frame = cap.read() # 今の映像を取得
             if ret:
@@ -145,8 +148,11 @@ def button_click():
 
 #各ボタンが押されたらコマンドを送る処理
 def endsys():
+    global is_running
+    is_running = False
     sock.close()
     print("endsys:終了します")
+    root.destroy()
     sys.exit(0)
     
 def takeoff():

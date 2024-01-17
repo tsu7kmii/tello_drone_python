@@ -1,2 +1,3 @@
 .env
 img/*
+drone_tello/__pycache__/*
